@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app" aria-labelledby="title">
+    <header class="app__header">
+      <h1 id="title">Lista de tarefas</h1>
+
+      <form id="new-task-form" class="new-task" autocomplete="off" aria-label="Adicionar tarefa">
+        <input id="new-task-input" class="input" type="text" placeholder="O que precisa fazer?" aria-label="Descrição da tarefa" />
+        <button type="submit" class="btn add" aria-label="Adicionar">Adicionar</button>
+      </form>
+
+      <div class="toolbar" role="group" aria-label="Ferramentas">
+        <input id="search" class="input search" type="search" placeholder="Buscar..." aria-label="Buscar tarefas" />
+        <div class="filters" role="group" aria-label="Filtros de exibição">
+          <button class="btn filter is-active" data-filter="all" aria-pressed="true">Todos</button>
+          <button class="btn filter" data-filter="active" aria-pressed="false">Ativos</button>
+          <button class="btn filter" data-filter="completed" aria-pressed="false">Concluídos</button>
+        </div>
+      </div>
+    </header>
+
+    <section class="list-wrap">
+      <ul id="task-list" class="list" role="list" aria-live="polite"></ul>
+    </section>
+
+    <footer class="app__footer">
+      <span id="counter" aria-live="polite">0 pendentes</span>
+      <button id="clear-completed" class="btn ghost" aria-label="Remover tarefas concluídas">Limpar concluídas</button>
+    </footer>
+  </main>
+
+  <template id="task-item-template">
+    <li class="item" data-id="">
+      <label class="check">
+        <input type="checkbox" class="toggle" aria-label="Concluir tarefa" />
+        <span class="custom"></span>
+      </label>
+
+      <span class="text" tabindex="0"></span>
+
+      <div class="actions">
+        <button class="icon-btn edit" title="Editar" aria-label="Editar">✎</button>
+        <button class="icon-btn delete" title="Excluir" aria-label="Excluir">🗑</button>
+      </div>
+    </li>
+  </template>
+
+  <!-- Modal de confirmação -->
+  <div id="confirm-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal__content">
+      <p>Tem certeza que deseja excluir esta tarefa?</p>
+      <div class="modal__actions">
+        <button id="confirm-yes" class="btn danger">Excluir</button>
+        <button id="confirm-no" class="btn ghost">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
